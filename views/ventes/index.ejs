@@ -1,0 +1,32 @@
+<h1 class="mb-4">Liste des ventes</h1>
+
+<a href="/ventes/ajouter" class="btn btn-primary mb-3">Nouvelle vente</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Prix Total</th>
+            <th>Client</th>
+            <th>Vendeur</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% ventes.forEach(vente => { %>
+        <tr>
+            <td><%= vente.createdAt.toLocaleDateString() %></td>
+            <td><%= vente.produit.nom %></td>
+            <td><%= vente.quantite %></td>
+            <td><%= vente.prixTotal.toFixed(2) %> €</td>
+            <td><%= vente.client.nom %></td>
+            <td><%= vente.vendeur.nom %></td>
+            <td>
+                <a href="/ventes/<%= vente._id %>" class="btn btn-sm btn-info">Détails</a>
+            </td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>

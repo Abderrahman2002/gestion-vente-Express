@@ -1,0 +1,40 @@
+services:
+  app:
+    image: boulmane2002/gestion-vente:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gestion-vente-app
+    user: "node"  # Add this line to run as node user
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - MONGODB_URI=mongodb+srv://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_CLUSTER}.mongodb.net/${MONGODB_DATABASE}
+      - SESSION_SECRET=${SESSION_SECRET}
+      - npm_config_fetch_retry_maxtimeout=600000
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - ./src:/usr/src/app/src:ro
+      - ./views:/usr/src/app/views:ro
+      - type: bind
+        source: ./backups
+        target: /usr/src/app/backups
+    restart: unless-stopped
+    healthcheck:  # Add healthcheck
+      test: ["CMD", "wget", "--spider", "http://localhost:3000"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-backups: {}

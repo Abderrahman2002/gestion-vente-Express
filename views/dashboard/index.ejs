@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Produits</h5>
+                <p class="card-text display-4"><%= stats.totalProduits %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Ventes du jour</h5>
+                <p class="card-text display-4"><%= stats.ventesJour %></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Chiffre d'affaires</h5>
+                <p class="card-text display-4"><%= stats.chiffreAffaires.toFixed(2) %> €</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Dernières Ventes
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Produit</th>
+                                <th>Montant</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% dernieresVentes.forEach(vente => { %>
+                            <tr>
+                                <td><%= vente.createdAt.toLocaleDateString() %></td>
+                                <td><%= vente.produit.nom %></td>
+                                <td><%= vente.prixTotal.toFixed(2) %> €</td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Produits en Rupture
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% produitsRupture.forEach(produit => { %>
+                            <tr>
+                                <td><%= produit.nom %></td>
+                                <td><%= produit.qtestock %></td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

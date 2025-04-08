@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title"><%= produit.nom %></h2>
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table">
+                    <tr>
+                        <th>Marque:</th>
+                        <td><%= produit.marque %></td>
+                    </tr>
+                    <tr>
+                        <th>Prix:</th>
+                        <td><%= produit.prix.toFixed(2) %> €</td>
+                    </tr>
+                    <tr>
+                        <th>Stock:</th>
+                        <td><%= produit.qtestock %></td>
+                    </tr>
+                    <tr>
+                        <th>Description:</th>
+                        <td><%= produit.description || 'Aucune description' %></td>
+                    </tr>
+                </table>
+                <div class="mt-3">
+                    <a href="/produits/<%= produit._id %>/modifier" class="btn btn-warning">Modifier</a>
+                    <a href="/produits" class="btn btn-secondary">Retour à la liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
