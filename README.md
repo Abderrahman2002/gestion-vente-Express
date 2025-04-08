@@ -29,7 +29,13 @@ MONGODB_DATABASE=gestionVente
 
 4. Démarrer l'application
 
+
 Option A - Sans Docker:
+
+```bash
+npm run seed
+```
+
 ```bash
 npm run dev
 ```
